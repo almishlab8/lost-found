@@ -33,8 +33,8 @@ export class AuthProvider {
  
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
- 
-        this.http.post(apiKey+'/user/register', JSON.stringify(details), {headers: headers})
+        headers.append('Access-Control-Allow-Origin' , '*');
+        this.http.post(apiKey+'/api/user/register', JSON.stringify(details), {headers: headers})
           .subscribe(res => {
             let data = res.json();
            // this.token = data.token;
@@ -61,18 +61,19 @@ export class AuthProvider {
        headers.append('Accept','application/json');
        headers.append('content-type','application/json');
      
-        this.http.post(apiKey+'/user/userLogin', JSON.stringify(credentials), {headers: headers})
+        this.http.post(apiKey+'api/user/login', JSON.stringify(credentials), {headers: headers})
           .subscribe(res => {
             let data = res.json();
-            if (data['email']!="The email must be a valid email address."){
-                 this.token = data.token;
-                  this.storage.set('token', data.token);
-                  this.storage.set('UserIsLogin', true);
-                  this.getUserInfo();
-            }
+            // if (data['email']!="The email must be a valid email address."){
+            //      this.token = data.token;
+            //       this.storage.set('token', data.token);
+            //       this.storage.set('UserIsLogin', true);
+            //       this.getUserInfo();
+            // }
          
            
             resolve(data);
+            console.log(data);
    }, (err) => {
             reject(err);
           
