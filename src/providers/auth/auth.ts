@@ -1,7 +1,7 @@
  
 import { Injectable } from '@angular/core';
 
-
+import 'rxjs/Rx';
 import { Storage } from '@ionic/storage';
 import {apiKey} from "../../app/apiurls/serverurls.js";
 import { Http , Headers } from '@angular/http';
@@ -121,8 +121,7 @@ getUserInfo(){
 
       console.log('value: ' + value);
  
-      this.http.get(apiKey+'/users', {headers: headers})
-        .map(res => res.json())
+      this.http.get(apiKey+'/users', {headers: headers}).map(res => res.json())
         .subscribe(data => {
           this.storage.set('userId', data.id);
           console.log('id: ' + data.id);

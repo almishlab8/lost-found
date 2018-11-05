@@ -15,4 +15,29 @@
 
 <ion-content padding>
 
+  <ion-content padding>
+
+
+    <ion-list>
+  
+      <ion-item>
+        <ion-label floating>Email</ion-label>
+        <ion-input type="email" [(ngModel)]="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Password</ion-label>
+        <ion-input type="password" [(ngModel)]="password"></ion-input>
+      </ion-item>
+  
+    </ion-list>
+  
+    <div padding>
+      <button ion-button color="secondary"  (click)="myLogIn()" >Log In</button>
+    </div>
+  
+  
+  
+    <div padding>
+      <button ion-button color="secondary"  (click)="myLogOut()" >Log Out</button>
+    </div>
 </ion-content>
