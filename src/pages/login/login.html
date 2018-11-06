@@ -6,38 +6,39 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="ink">
     <ion-title>تسجيل الدخول</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content >
 
-  <ion-content padding>
-
-
-    <ion-list>
+<div class="shape"></div>
+    
   
-      <ion-item>
-        <ion-label floating>Email</ion-label>
-        <ion-input type="email" [(ngModel)]="email"></ion-input>
+  <div class="">
+      
+    <ion-item class="noBackColor">
+        <ion-label floating class="lb"> <ion-icon name="mail" style="margin:8px"></ion-icon>البريد الالكتروني</ion-label>
+        <ion-input type="text"[(ngModel)]="email" ></ion-input>
       </ion-item>
-      <ion-item>
-        <ion-label floating>Password</ion-label>
+    
+      <ion-item class="noBackColor">
+        <ion-label floating class="lb"> <ion-icon name="lock" style="margin:8px"></ion-icon>كلمة المرور</ion-label>
         <ion-input type="password" [(ngModel)]="password"></ion-input>
       </ion-item>
-  
-    </ion-list>
-  
-    <div padding>
-      <button ion-button color="secondary"  (click)="myLogIn()" >Log In</button>
+
+  </div>
+
+    <div class="btn">
+      <button ion-button block round color="ink" class="loginBnt" (click)="myLogIn()">دخول</button>
+
     </div>
-  
-  
-  
-    <div padding>
+    <button ion-button block color="danger" clear (click)="register()">انشاء حساب جديد</button>
+
+    <!-- <div padding>
       <button ion-button color="secondary"  (click)="myLogOut()" >Log Out</button>
-    </div>
+    </div> -->
 </ion-content>

@@ -6,13 +6,67 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>add_lost</ion-title>
+  <ion-navbar color="ink">
+    <ion-title>اضافة شيء مفقود</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+    <img class="mg" src="./assets/imgs/lost.png"/>
+
+    <ion-list class="rightSide">
+        <ion-item>
+            <ion-label floating>عنوان الموضوع</ion-label>
+            <ion-input type="text" [(ngModel)]="lostData.title"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>النوع</ion-label>
+
+            <ion-select [(ngModel)]="lostData.type" cancelText="الغاء" okText="اختار ">
+                <ion-option value="نقود">نقود</ion-option>
+                <ion-option value="مستمسكات">مستمسكات</ion-option>
+                <ion-option value="اخرى">اخرى</ion-option>
+            
+
+            </ion-select>
+
+        </ion-item>
+        <ion-item>
+            <ion-label floating>التفاصيل</ion-label>
+            <ion-textarea type="textarea" [(ngModel)]="lostData.details"></ion-textarea>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>المحافظة </ion-label>
+
+            <ion-select [(ngModel)]="lostData.location" cancelText="الغاء" okText="اختار ">
+                <ion-option value="بغداد">بغداد</ion-option>
+                <ion-option value="البصرة">البصرة</ion-option>
+                <ion-option value="نينوى">نينوى</ion-option>
+                <ion-option value="الأنبار">الأنبار</ion-option>
+                <ion-option value="أربيل">أربيل</ion-option>
+                <ion-option value="بابل">بابل</ion-option>
+                <ion-option value="دهوك">دهوك</ion-option>
+                <ion-option value="القادسية">القادسية</ion-option>
+                <ion-option value="ديالى">ديالى</ion-option>
+                <ion-option value="ذي قار">ذي قار</ion-option>
+                <ion-option value="السليمانية">السليمانية</ion-option>
+                <ion-option value="صلاح الدين">صلاح الدين</ion-option>
+                <ion-option value="كركوك">كركوك</ion-option>
+                <ion-option value="كربلاء">كربلاء</ion-option>
+                <ion-option value="المثنى">المثنى</ion-option>
+                <ion-option value="ميسان">ميسان</ion-option>
+                <ion-option value="النجف">النجف</ion-option>
+                <ion-option value="واسط">واسط</ion-option>
+
+            </ion-select>
+
+        </ion-item>
+
+
+    </ion-list>
+    <button side="right" color="danger" ion-button block (click)="addLost()">اضافة </button>
 
 </ion-content>

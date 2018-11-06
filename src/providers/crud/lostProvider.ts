@@ -21,7 +21,7 @@ export class LostProvider {
   constructor(public storage: Storage ,
     public http: Http, 
      ) {
-    console.log('Hello BloodRequestProvider Provider');
+    console.log('Hello LostProvider ');
   }
 
 
@@ -39,7 +39,7 @@ export class LostProvider {
 
        console.log('value: ' + value);
   
-       this.http.get(apiKey+'/allRequests', {headers: headers})
+       this.http.get(apiKey+'/lost', {headers: headers})
          .map(res => res.json())
          .subscribe(data => {
            resolve(data);
@@ -70,7 +70,7 @@ export class LostProvider {
      headers.append('Authorization', 'Bearer '+value);
      console.log('value: ' + value);
 
-     this.http.post(apiKey+'/requeste',  JSON.stringify(postInfo),  {headers: headers})
+     this.http.post(apiKey+'/lost',  JSON.stringify(postInfo),  {headers: headers})
        .map(res => res.json())
        .subscribe(data => {
          resolve(data);

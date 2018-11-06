@@ -6,14 +6,34 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>الاعدادات</ion-title>
+    <ion-navbar color="ink">
+        <ion-title>الاعدادات</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+    <ion-list  >
+        <ion-list-header>
+      معلومات المستخدم
+      </ion-list-header>
+          <ion-item  *ngIf="isLogin">
+            {{userName}}
+                <ion-icon name='person' item-start></ion-icon>
+          </ion-item> 
+      
+          <button ion-item *ngIf="isLogin ; let user; else showLogin" (click)="LogOut()">
+            تسجيل خروج 
+             <ion-icon ios="ios-log-out" md="md-log-out" item-start></ion-icon>
+           </button>  
+           <ng-template #showLogin>
+             <button ion-item (click)="login()">
+               تسجيل الدخول 
+                <ion-icon ios="ios-log-in" md="md-log-in" item-start></ion-icon>
+              </button>  
+           </ng-template>
+      </ion-list>
   <button ion-button (click)="login()">تسجيل الدخول</button>
   <button ion-button color="secondary" (click)="signup()">التسجيل</button>
 </ion-content>

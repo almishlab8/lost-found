@@ -6,38 +6,43 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="ink">
     <ion-title>التسجيل</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content >
 
 
-  <ion-list>
-
-    <ion-item>
-      <ion-label floating>name</ion-label>
-      <ion-input type="text" [(ngModel)]="name"></ion-input>
-    </ion-item>
-
-
-    <ion-item>
-      <ion-label floating>Email</ion-label>
-      <ion-input type="email" [(ngModel)]="email"></ion-input>
+ 
+<div class="shape"></div>
+    
+  
+<div class="">
+    
+  <ion-item class="noBackColor">
+      <ion-label floating class="lb"> <ion-icon name="person" style="margin:8px"></ion-icon>الاسم</ion-label>
+      <ion-input type="text"[(ngModel)]="name" ></ion-input>
     </ion-item>
   
-    <ion-item>
-      <ion-label floating>Password</ion-label>
+    
+  <ion-item class="noBackColor">
+      <ion-label floating class="lb"> <ion-icon name="mail" style="margin:8px"></ion-icon>البريد الالكتروني</ion-label>
+      <ion-input type="text"[(ngModel)]="email" ></ion-input>
+    </ion-item>
+  
+    <ion-item class="noBackColor">
+      <ion-label floating class="lb"> <ion-icon name="lock" style="margin:8px"></ion-icon>كلمة المرور</ion-label>
       <ion-input type="password" [(ngModel)]="password"></ion-input>
     </ion-item>
-  
-  </ion-list>
 
+</div>
 
-  <div padding>
-    <button   ion-button color="secondary"   (click)="myRegister()"   >Register</button>
+  <div class="btn">
+    <button ion-button block round color="danger" class="loginBnt" (click)="myRegister()">تسجيل</button>
+
   </div>
+
 </ion-content>

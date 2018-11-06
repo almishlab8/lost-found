@@ -3,6 +3,10 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams , AlertController} from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 
+import { Storage } from '@ionic/storage';
+import {apiKey} from "../../app/apiurls/serverurls.js";
+import { Http , Headers } from '@angular/http';
+import { SignupPage } from '../signup/signup';
 /**
  * Generated class for the LoginPage page.
  *
@@ -24,7 +28,7 @@ export class LoginPage {
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public authService: AuthProvider ,
-   
+    public storage: Storage , public http: Http,
     public alertCtrl: AlertController ,
   
   ) {
@@ -61,6 +65,7 @@ export class LoginPage {
  
         
          this.authService.login(credentials).then((result) => {
+           this.getUserInfo();
             console.log(result);
             this.navCtrl.setRoot(HomePage);
            
@@ -92,5 +97,34 @@ export class LoginPage {
 myLogOut(){
   this.authService.logout();
   this.navCtrl.setRoot(HomePage);
+}
+
+getUserInfo(){
+  return new Promise((resolve, reject) => {
+    this.storage.get('token').then((value) => {
+
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      headers.append('Authorization', 'Bearer '+value);
+
+      console.log('value: ' + value);
+ 
+      this.http.get(apiKey+'/users', {headers: headers})
+        .map(res => res.json())
+        .subscribe(data => {
+          this.storage.set('userId', data.id);
+          console.log('id: ' + data.id);
+          this.storage.set('userName', data.name);
+          console.log('name: ' + data.name);
+          resolve(data);
+        }, (err) => {
+          reject(err);
+        }); 
+    }) 
+
+  });
+}
+register(){
+  this.navCtrl.push(SignupPage)
 }
 }

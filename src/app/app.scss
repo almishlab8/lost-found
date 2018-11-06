@@ -22,3 +22,24 @@
 *{
     font-family: 'Cairo'; 
 }
+ion-content {
+    direction: rtl;
+}
+ion-input {
+    direction: rtl;
+}
+.toolbar-title {
+  
+    direction: rtl;
+}
+.toolbar {
+
+    min-height: 45px;
+}
+.text-input{
+    direction: rtl
+}
+
+.alert-radio-label{
+    direction: rtl;
+}

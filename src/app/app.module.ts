@@ -16,6 +16,11 @@ import { LoginPage } from '../pages/login/login';
 import { AuthProvider } from '../providers/auth/auth';
 import { IonicStorageModule } from '@ionic/storage';
 import { HttpModule } from '@angular/http'; 
+import { AddFoundPage } from '../pages/add-found/add-found';
+import { AddLostPage } from '../pages/add-lost/add-lost';
+import { FoundTypePage } from '../pages/found-type/found-type';
+import { LostTypePage } from '../pages/lost-type/lost-type';
+import { LostProvider } from '../providers/crud/lostProvider';
 
 @NgModule({
   declarations: [
@@ -26,6 +31,10 @@ import { HttpModule } from '@angular/http';
     TabsPage,
     LoginPage,
     SignupPage,
+    LostTypePage,
+    FoundTypePage,
+    AddLostPage,
+    AddFoundPage,
     SettingsPage
   ],
   imports: [
@@ -43,13 +52,18 @@ import { HttpModule } from '@angular/http';
     TabsPage,
     LoginPage,
     SignupPage,
+    LostTypePage,
+    FoundTypePage,
+    AddLostPage,
+    AddFoundPage,
     SettingsPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler} , 
-    AuthProvider
+    AuthProvider,
+    LostProvider
   ]
 })
 export class AppModule {}
