@@ -14,8 +14,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'show-lost.html',
 })
 export class ShowLostPage {
+  type: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.type = this.navParams.get('type');
   }
 
   ionViewDidLoad() {

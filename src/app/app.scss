@@ -43,3 +43,6 @@ ion-input {
 .alert-radio-label{
     direction: rtl;
 }
+.list-ios > .item-block:first-child {
+    border-top: 0.55px solid #fff;
+}

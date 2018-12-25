@@ -21,6 +21,8 @@ import { AddLostPage } from '../pages/add-lost/add-lost';
 import { FoundTypePage } from '../pages/found-type/found-type';
 import { LostTypePage } from '../pages/lost-type/lost-type';
 import { LostProvider } from '../providers/crud/lostProvider';
+import { ShowLostPage } from '../pages/show-lost/show-lost';
+import { ShowFoundPage } from '../pages/show-found/show-found';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { LostProvider } from '../providers/crud/lostProvider';
     FoundTypePage,
     AddLostPage,
     AddFoundPage,
+    ShowLostPage,
+    ShowFoundPage,
     SettingsPage
   ],
   imports: [
@@ -56,6 +60,8 @@ import { LostProvider } from '../providers/crud/lostProvider';
     FoundTypePage,
     AddLostPage,
     AddFoundPage,
+    ShowLostPage,
+    ShowFoundPage,
     SettingsPage
   ],
   providers: [

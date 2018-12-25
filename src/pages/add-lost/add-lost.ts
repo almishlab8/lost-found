@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LostProvider } from '../../providers/crud/lostProvider';
-
 import { Storage } from '@ionic/storage';
 import { LoginPage } from '../login/login';
 /**
@@ -36,7 +35,9 @@ export class AddLostPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddLostPage');
   }
-
+  ionViewDidEnter(){
+    this.checkAuthState();
+  }
   addLost(){
     this.storage.get('userId').then((value) => {
       this.lostData.user_id=value;

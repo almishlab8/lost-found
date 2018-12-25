@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ShowLostPage } from '../show-lost/show-lost';
 
 /**
  * Generated class for the LostTypePage page.
@@ -21,5 +22,9 @@ export class LostTypePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad LostTypePage');
   }
-
+  showPage(type){
+    this.navCtrl.push(ShowLostPage,{
+      type:type
+    });
+  }
 }

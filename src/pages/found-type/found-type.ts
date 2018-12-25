@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ShowFoundPage } from '../show-found/show-found';
 
 /**
  * Generated class for the FoundTypePage page.
@@ -20,6 +21,11 @@ export class FoundTypePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad FoundTypePage');
+  }
+  showPage(type){
+    this.navCtrl.push(ShowFoundPage,{
+      type:type
+    });
   }
 
 }

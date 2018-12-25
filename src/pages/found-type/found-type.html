@@ -12,7 +12,26 @@
   
   </ion-header>
 
-
-<ion-content padding>
-
-</ion-content>
+  <ion-content >
+    <div style="margin-top:20%"></div>
+      <ion-grid>
+      
+        <ion-row (click)="showPage('نقود')" class="main_card">
+          <ion-col class="card1" col-4><img class="mg" src="./assets/imgs/money.png"/></ion-col>
+          <ion-col class="c7" col-8><h1>نقود</h1></ion-col>
+        </ion-row>
+    
+        <ion-row (click)="showPage('مستمسكات')" class="main_card">
+            <ion-col  class="c5" col-8><h1><h1>مستمسكات</h1></h1></ion-col>
+          <ion-col class="card2" col-4><img class="mg" src="./assets/imgs/document.png"/></ion-col>
+         
+        </ion-row>
+    
+        <ion-row (click)="showPage('اخرى')" class="main_card">
+          <ion-col class="card3" col-4><img class="mg" src="./assets/imgs/other.png"/></ion-col>
+          <ion-col class="c7" col-8><h1>اخرى</h1></ion-col>
+        </ion-row>
+    
+    
+      </ion-grid>
+    </ion-content>
