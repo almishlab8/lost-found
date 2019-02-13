@@ -2,12 +2,10 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
-
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { SettingsPage } from '../pages/settings/settings';
@@ -23,6 +21,18 @@ import { LostTypePage } from '../pages/lost-type/lost-type';
 import { LostProvider } from '../providers/crud/lostProvider';
 import { ShowLostPage } from '../pages/show-lost/show-lost';
 import { ShowFoundPage } from '../pages/show-found/show-found';
+import { FoundProvider } from '../providers/crud/foundProvider';
+import { DevelopersPage } from '../pages/developers/developers';
+import { LoginPageModule } from '../pages/login/login.module';
+import { SignupPageModule } from '../pages/signup/signup.module';
+import { LostTypePageModule } from '../pages/lost-type/lost-type.module';
+import { SettingsPageModule } from '../pages/settings/settings.module';
+import { FoundTypePageModule } from '../pages/found-type/found-type.module';
+import { AddLostPageModule } from '../pages/add-lost/add-lost.module';
+import { AddFoundPageModule } from '../pages/add-found/add-found.module';
+import { ShowLostPageModule } from '../pages/show-lost/show-lost.module';
+import { ShowFoundPageModule } from '../pages/show-found/show-found.module';
+import { DevelopersPageModule } from '../pages/developers/developers.module';
 
 @NgModule({
   declarations: [
@@ -31,21 +41,32 @@ import { ShowFoundPage } from '../pages/show-found/show-found';
     ContactPage,
     HomePage,
     TabsPage,
-    LoginPage,
-    SignupPage,
-    LostTypePage,
-    FoundTypePage,
-    AddLostPage,
-    AddFoundPage,
-    ShowLostPage,
-    ShowFoundPage,
-    SettingsPage
+    // LoginPage,
+    // SignupPage,
+    // LostTypePage,
+    // FoundTypePage,
+    // AddLostPage,
+    // AddFoundPage,
+    // ShowLostPage,
+    // ShowFoundPage,
+    // DevelopersPage,
+    // SettingsPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, {backButtonText: 'رجوع'},),
     IonicStorageModule.forRoot()  ,
-    HttpModule 
+    HttpModule ,
+    LoginPageModule,
+    SignupPageModule,
+    LostTypePageModule,
+    FoundTypePageModule,
+    AddLostPageModule,
+    AddFoundPageModule,
+    ShowLostPageModule,
+    ShowFoundPageModule,
+    DevelopersPageModule,
+    SettingsPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -62,6 +83,7 @@ import { ShowFoundPage } from '../pages/show-found/show-found';
     AddFoundPage,
     ShowLostPage,
     ShowFoundPage,
+    DevelopersPage,
     SettingsPage
   ],
   providers: [
@@ -69,6 +91,7 @@ import { ShowFoundPage } from '../pages/show-found/show-found';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler} , 
     AuthProvider,
+    FoundProvider,
     LostProvider
   ]
 })

@@ -1,4 +1,11 @@
 page-signup {
+
+    .header-ios .toolbar-background-ios, .footer-ios .toolbar-background-ios {
+        border-color: #24384a !important;
+    }
+    .toolbar-background-md {
+        border-color: #24384a !important;
+    }
     .shape{
         background-color: #24384a;
         height: 50px;

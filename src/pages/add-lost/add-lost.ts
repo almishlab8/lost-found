@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LostProvider } from '../../providers/crud/lostProvider';
 import { Storage } from '@ionic/storage';
 import { LoginPage } from '../login/login';
+import { ToastController } from 'ionic-angular';
+
 /**
  * Generated class for the AddLostPage page.
  *
@@ -16,6 +18,7 @@ import { LoginPage } from '../login/login';
   templateUrl: 'add-lost.html',
 })
 export class AddLostPage {
+
   lostData = {
  
     title:'', 
@@ -29,6 +32,7 @@ export class AddLostPage {
   constructor(
     public LostProvider: LostProvider ,
     public storage: Storage , 
+    private toastCtrl: ToastController,
     public navCtrl: NavController, public navParams: NavParams) {
   }
 
@@ -46,12 +50,12 @@ export class AddLostPage {
     this.LostProvider.insertPosts(this.lostData).then((result)=>{
       console.log(result)
       this.navCtrl.pop()
-      // let toast = this.toastCtrl.create({
-      //   message: 'تم تسجيلك كمتبرع بنجاح',
-      //   duration: 3000,
-      //   position: 'top'
-      // });
-      // toast.present();
+      let toast = this.toastCtrl.create({
+        message: 'تم الاضافة  بنجاح',
+        duration: 3000,
+        position: 'top'
+      });
+      toast.present();
     },(err)=>{
       console.log("insert err: "+ err)
       console.log("this.lost: "+ JSON.stringify(this.lostData))
@@ -66,4 +70,6 @@ export class AddLostPage {
         }   
     });
   }
+
+
 }

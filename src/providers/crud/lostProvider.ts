@@ -39,7 +39,7 @@ export class LostProvider {
 
        console.log('value: ' + value);
   
-       this.http.get(apiKey+'/lost', {headers: headers})
+       this.http.get(apiKey+'/all-lost', {headers: headers})
          .map(res => res.json())
          .subscribe(data => {
            resolve(data);
@@ -83,6 +83,30 @@ export class LostProvider {
 
 }
 
+ insertComment(postInfo){
+  return new Promise((resolve, reject) => {
+   this.storage.get('token').then((value) => {
+
+     let headers = new Headers();
+     headers.append('Access-Control-Allow-Origin' , '*');
+     headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
+     headers.append('Content-Type', 'application/json');
+     headers.append('Authorization', 'Bearer '+value);
+     console.log('value: ' + value);
+
+     this.http.post(apiKey+'/lost-comments',  JSON.stringify(postInfo),  {headers: headers})
+       .map(res => res.json())
+       .subscribe(data => {
+         resolve(data);
+       }, (err) => {
+         reject(err);
+       }); 
+   }) 
+
+ });
+
+}
+
 
 
 
@@ -100,7 +124,7 @@ editPosts(id,postInfo){
      headers.append('Authorization', 'Bearer '+value);
      console.log('value: ' + value);
 
-     this.http.put(apiKey+'/requeste/' +id ,  JSON.stringify(postInfo),  {headers: headers})
+     this.http.put(apiKey+'/lost/' +id ,  JSON.stringify(postInfo),  {headers: headers})
        .map(res => res.json())
        .subscribe(data => {
          resolve(data);
@@ -112,42 +136,5 @@ editPosts(id,postInfo){
  });
 
 }
-
-
-
-
-
-
-deletePosts(id ){
-  return new Promise((resolve, reject) => {
-   this.storage.get('token').then((value) => {
-
-     let headers = new Headers();
-     headers.append('Access-Control-Allow-Origin' , '*');
-       headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
-     headers.append('Content-Type', 'application/json');
-     headers.append('Authorization', 'Bearer '+value);
-     console.log('value: ' + value);
-
-     this.http.delete(apiKey+'api/books/' +id,    {headers: headers})
-       .map(res => res.json())
-       .subscribe(data => {
-         resolve(data);
-       }, (err) => {
-         reject(err);
-       }); 
-   }) 
-
- });
-
-}
-
-
-
-
-
-
-
-
 
 }

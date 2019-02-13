@@ -1,12 +1,12 @@
-import { HomePage } from './../home/home';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams , AlertController} from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
-
+import { ToastController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import {apiKey} from "../../app/apiurls/serverurls.js";
 import { Http , Headers } from '@angular/http';
 import { SignupPage } from '../signup/signup';
+import { SettingsPage } from '../settings/settings';
 /**
  * Generated class for the LoginPage page.
  *
@@ -28,6 +28,7 @@ export class LoginPage {
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public authService: AuthProvider ,
+    private toastCtrl: ToastController,
     public storage: Storage , public http: Http,
     public alertCtrl: AlertController ,
   
@@ -67,12 +68,18 @@ export class LoginPage {
          this.authService.login(credentials).then((result) => {
            this.getUserInfo();
             console.log(result);
-            this.navCtrl.setRoot(HomePage);
+            this.navCtrl.setRoot(SettingsPage);
+            let toast = this.toastCtrl.create({
+              message: 'اهلا بك مجددا  ',
+              duration: 3000,
+              position: 'top'
+            });
+            toast.present();
            
         }, (err) => {
      
             console.log(err);
-            this. errorFunc('Wrong credentials ! try again')
+            this. errorFunc('! يرجى التاكد من الايميل و كلمة السر الخاصة بك ')
             console.log("credentials: "+JSON.stringify(credentials))
             
         });
@@ -96,7 +103,7 @@ export class LoginPage {
 
 myLogOut(){
   this.authService.logout();
-  this.navCtrl.setRoot(HomePage);
+  this.navCtrl.setRoot(SettingsPage);
 }
 
 getUserInfo(){

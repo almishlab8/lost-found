@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams , AlertController } from 'ionic-angular';
-
+import { ToastController } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
-
 import { LoginPage } from '../login/login';
 /**
  * Generated class for the SignupPage page.
@@ -26,7 +25,7 @@ export class SignupPage {
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public authService: AuthProvider ,
-   
+    private toastCtrl: ToastController,
     public alertCtrl: AlertController , 
   ) {
   }
@@ -38,24 +37,40 @@ export class SignupPage {
 
   errorFunc(message){
     let alert = this.alertCtrl.create({
-      title: 'Warining!',
+      title: '!انتبه',
       subTitle: message,
-      buttons: ['OK']
+      buttons: ['حسناً']
     });
     alert.present();
   }
 
 
 
+  Rgister(){
 
-  myRegister(){
+    let email_already_in_use = this.toastCtrl.create({
+      message: 'هذا المستخدم موجود مسبقاً ..!',
+      duration: 3000,
+      position: 'top'
+      
+    });
+    let weak_password = this.toastCtrl.create({
+      message: 'كلمة المرور ضعيفة ..!',
+      duration: 3000,
+      position: 'top'
+    });
+    let invalid_email = this.toastCtrl.create({
+      message: 'تأكد من البريد الالكتروني بشكل صحيح ..!',
+      duration: 3000,
+      position: 'top'
+    });
  
-    if (this.email.trim()  &&  this.name.trim()  && this.password.trim() ) {    
+    if (this.email.trim()  &&  this.name.trim() ) {    
       
     
        
-      if (this.password.trim()  === '') {
-        this.errorFunc('يرجى كتابة كلمة السر الخاصة بك ')
+      if (this.password.length < 6) {
+        weak_password.present();
  
       }else{
  
@@ -68,7 +83,15 @@ export class SignupPage {
         
          this.authService.createAccount(credentials).then((result) => {
             console.log(result);
-            this.navCtrl.setRoot(LoginPage);
+            if (result['email']=="The email has already been taken.") {
+              email_already_in_use.present();
+            }else{
+                   if (result['email']=="The email must be a valid email address.") {
+              invalid_email.present();
+            }else{this.navCtrl.setRoot(LoginPage);}
+            
+            }
+       
            
         }, (err) => {
      
@@ -83,12 +106,17 @@ export class SignupPage {
    }
    else{
     
-    this. errorFunc('كلمة السر خطآ ..! ')
+    this. errorFunc('يرجى ملئ جميع الحقول')
    
     }
  
 
 }
+
+
+
+
+
 
 
 

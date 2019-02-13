@@ -39,7 +39,7 @@ export class FoundProvider {
 
        console.log('value: ' + value);
   
-       this.http.get(apiKey+'/alldonors', {headers: headers})
+       this.http.get(apiKey+'/all-found', {headers: headers})
          .map(res => res.json())
          .subscribe(data => {
            resolve(data);
@@ -70,7 +70,31 @@ export class FoundProvider {
      headers.append('Authorization', 'Bearer '+value);
      console.log('value: ' + value);
 
-     this.http.post(apiKey+'/donors',  JSON.stringify(postInfo),  {headers: headers})
+     this.http.post(apiKey+'/found',  JSON.stringify(postInfo),  {headers: headers})
+       .map(res => res.json())
+       .subscribe(data => {
+         resolve(data);
+       }, (err) => {
+         reject(err);
+       }); 
+   }) 
+
+ });
+
+}
+
+ insertComment(postInfo){
+  return new Promise((resolve, reject) => {
+   this.storage.get('token').then((value) => {
+
+     let headers = new Headers();
+     headers.append('Access-Control-Allow-Origin' , '*');
+     headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
+     headers.append('Content-Type', 'application/json');
+     headers.append('Authorization', 'Bearer '+value);
+     console.log('value: ' + value);
+
+     this.http.post(apiKey+'/found-comments',  JSON.stringify(postInfo),  {headers: headers})
        .map(res => res.json())
        .subscribe(data => {
          resolve(data);
@@ -100,7 +124,7 @@ editPosts(id,postInfo){
      headers.append('Authorization', 'Bearer '+value);
      console.log('value: ' + value);
 
-     this.http.put(apiKey+'/donors/' +id ,  JSON.stringify(postInfo),  {headers: headers})
+     this.http.put(apiKey+'/found/' +id ,  JSON.stringify(postInfo),  {headers: headers})
        .map(res => res.json())
        .subscribe(data => {
          resolve(data);
@@ -112,42 +136,5 @@ editPosts(id,postInfo){
  });
 
 }
-
-
-
-
-
-
-deletePosts(id ){
-  return new Promise((resolve, reject) => {
-   this.storage.get('token').then((value) => {
-
-     let headers = new Headers();
-     headers.append('Access-Control-Allow-Origin' , '*');
-       headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
-     headers.append('Content-Type', 'application/json');
-     headers.append('Authorization', 'Bearer '+value);
-     console.log('value: ' + value);
-
-     this.http.delete(apiKey+'api/donors/' +id,    {headers: headers})
-       .map(res => res.json())
-       .subscribe(data => {
-         resolve(data);
-       }, (err) => {
-         reject(err);
-       }); 
-   }) 
-
- });
-
-}
-
-
-
-
-
-
-
-
 
 }

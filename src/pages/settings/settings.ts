@@ -1,17 +1,13 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { SignupPage } from '../signup/signup';
 import { AuthProvider } from '../../providers/auth/auth';
-import { HomePage } from '../home/home';
 import { Storage } from '@ionic/storage';
+import { AboutPage } from '../about/about';
+import { DevelopersPage } from '../developers/developers';
+import { ContactPage } from '../contact/contact';
 
-/**
- * Generated class for the SettingsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -21,7 +17,12 @@ import { Storage } from '@ionic/storage';
 export class SettingsPage {
   isLogin:boolean=false;
   userName:any;
-  constructor( public authService: AuthProvider ,public storage: Storage,public navCtrl: NavController, public navParams: NavParams) {
+  constructor( public authService: AuthProvider ,
+    public storage: Storage,
+    public modalCtrl: ModalController,
+    public navCtrl: NavController, 
+    public navParams: NavParams
+    ) {
   }
 
   ionViewDidEnter() {
@@ -53,6 +54,21 @@ export class SettingsPage {
     this.storage.set('UserIsLogin', false);
     this.storage.set('userId', '');
     this.storage.set('userName', '');
-    this.navCtrl.setRoot(HomePage);
+    this.navCtrl.setRoot(SettingsPage);
+  }
+
+
+
+  contactModal(){
+    let modal = this.modalCtrl.create(ContactPage);
+    modal.present();
+  }
+  aboutModal(){
+    let modal = this.modalCtrl.create(AboutPage);
+    modal.present();
+  }
+  developerModal(){
+    let modal = this.modalCtrl.create(DevelopersPage);
+    modal.present();
   }
 }
